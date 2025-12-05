@@ -22,7 +22,7 @@ public class AddBookService {
   /**
    * 3. 도서 추가 (사용자 입력)
    */
-  public void addBook(){
+  public void addBook() {
     System.out.print("\n*** 도서 추가 ***\n");
 
     System.out.print("책 제목 입력 : ");
@@ -44,7 +44,7 @@ public class AddBookService {
     // 서비스 호출
     int bookNumber = addBook(book);
 
-    if(bookNumber == 0){
+    if (bookNumber == 0) {
       System.out.println("@@@ 책 추가에 실패했습니다. @@@");
       return;
     }
@@ -81,8 +81,8 @@ public class AddBookService {
 
 
   /**
-   *  파일(members.txt)에서 가장 큰 번호(첫 번째 컬럼)를 읽어오는 메서드
-   *    - 없으면 0 반환 → 첫 책은 1번부터 시작
+   * 파일(members.txt)에서 가장 큰 번호(첫 번째 컬럼)를 읽어오는 메서드
+   * - 없으면 0 반환 → 첫 책은 1번부터 시작
    */
   private int getLastBookNumberFromFile() {
 
@@ -128,7 +128,7 @@ public class AddBookService {
 
 
   /**
-   *  새로 추가된 마지막 책 한 권만 파일에 append 하는 방식으로 수정
+   * 새로 추가된 마지막 책 한 권만 파일에 append 하는 방식으로 수정
    */
   private void writeBookListFile() {
 
@@ -139,7 +139,7 @@ public class AddBookService {
     BookDTO book = bookList.get(bookList.size() - 1);
 
     try (BufferedWriter bw =
-             new BufferedWriter(new FileWriter(BOOK_FILE_PATH , true))) {
+             new BufferedWriter(new FileWriter(BOOK_FILE_PATH, true))) {
 
       // number title author price
       bw.write(book.getNumber() + " "
