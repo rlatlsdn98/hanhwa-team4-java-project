@@ -4,7 +4,8 @@ import com.ohgiraffers.comparator.AscendingPrice;
 import com.ohgiraffers.dto.BookDTO;
 
 
-
+import java.io.*;
+import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -26,8 +27,34 @@ public class BookService {
         // tempList << 파일 데이터를 읽어와서 List<BookDTO> 타입으로 저장.
         // 1. 파일 데이터를 읽어 오는 방법
         // 2. 읽어온 파일 데이터를 어떻게 tempList에 추가할지?
+      try (BufferedReader br =
+               new BufferedReader(new FileReader("src/members.txt"))) {
 
-        return tempList;
+        String line;
+        while ((line = br.readLine()) != null) {
+          // 한 줄을 공백 기준으로 분리합니다.
+          String[] parts = line.split(" ");
+
+          if (parts.length >= 4) {
+            // 파싱하여 BookDTO 객체 생성
+            int bookId = Integer.parseInt(parts[0]);
+            String title = parts[1];
+            String author = parts[2];
+            int price = Integer.parseInt(parts[3]);
+
+            BookDTO book = new BookDTO(bookId, title, author, price);
+            tempList.add(book);
+            System.out.println( book.getTitle());
+          }
+        }
+
+      } catch (FileNotFoundException e) {
+        // 파일이 없는 경우 (가장 흔함): 빈 목록을 반환하거나 초기 데이터를 생성해야 함
+        System.out.println("⚠️ 도서 데이터 파일(bookList.dat)을 찾을 수 없습니다. ");
+      } catch (IOException e) {
+        System.out.println("⚠️ 파일 읽기 중 오류 발생: " + e.getMessage());
+      }
+      return tempList;
     }
 
     public List<BookDTO> getBookList() {
