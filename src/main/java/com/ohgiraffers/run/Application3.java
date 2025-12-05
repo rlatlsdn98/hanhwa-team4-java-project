@@ -8,7 +8,8 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-public class Application3 {
+public class
+Application3 {
 
     private Scanner sc = new Scanner(System.in);
     private BookService bookService = new BookService();

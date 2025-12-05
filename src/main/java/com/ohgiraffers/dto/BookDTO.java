@@ -60,7 +60,7 @@ public class BookDTO implements Comparable<BookDTO>{
 
     @Override
     public String toString() {
-        return "BookDTO{" + "author=" + author + ", number=" + number + ", price=" + price + ", title=" + title + '}';
+         return number + ". " + title + " "+  author + " " +  + price + "원";
     }
 
 
