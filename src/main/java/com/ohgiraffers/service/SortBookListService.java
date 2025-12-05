@@ -19,7 +19,7 @@ public class SortBookListService {
 
 
     /**
-     * 7. 도서 정렬
+     *  도서 정렬
      */
     public void sortBookList(){
         System.out.print("\n*** 도서 정렬 목록 조회 ***\n");
