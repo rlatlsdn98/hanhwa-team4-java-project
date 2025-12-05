@@ -96,7 +96,7 @@ public class Run {
         // 1. 파일 데이터를 읽어 오는 방법
         // 2. 읽어온 파일 데이터를 어떻게 tempList에 추가할지?
         try (BufferedReader br =
-                     new BufferedReader(new FileReader("src/main/resources/members.txt"))) {
+                     new BufferedReader(new FileReader("src/members.txt"))) {
 
             String line;
             while ((line = br.readLine()) != null) {
@@ -120,7 +120,7 @@ public class Run {
             // 파일이 없는 경우 (가장 흔함): 빈 목록을 반환하거나 초기 데이터를 생성해야 함
 
         } catch (IOException e) {
-            System.out.println("⚠️ 파일 읽기 중 오류 발생: " + e.getMessage());
+            System.out.println(" 파일 읽기 중 오류 발생: " + e.getMessage());
         }
         return tempList;
     }
