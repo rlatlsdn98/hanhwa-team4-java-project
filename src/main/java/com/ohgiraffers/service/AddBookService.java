@@ -2,6 +2,9 @@ package com.ohgiraffers.service;
 
 import com.ohgiraffers.dto.BookDTO;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -63,10 +66,39 @@ public class AddBookService {
             }
         }
         // 다음 번호 생성 -> 정확성을 위해 마지막 원소의 number를 구하고 + 1
-        int nextNumber = bookList.get(bookList.size() - 1).getNumber() + 1;
+        int nextNumber;
+        if(bookList.isEmpty()){
+          nextNumber = 1;
+        } else {
+          nextNumber = bookList.get(bookList.size() - 1).getNumber() + 1;
+        }
         // 책 정보 목록에 추가
         newBook.setNumber(nextNumber);
         bookList.add(newBook);
+
+        // 추가한 책 정보 파일에 저장
+        writeBookListFile();
         return newBook.getNumber();
     }
+
+  private void writeBookListFile() {
+
+    try (BufferedWriter bw =
+             new BufferedWriter(new FileWriter("src/members.txt"))) {
+
+      for (BookDTO book : bookList) {
+        // number title author price
+        bw.write(book.getNumber() + " "
+            + book.getTitle() + " "
+            + book.getAuthor() + " "
+            + book.getPrice());
+        bw.newLine();
+      }
+
+      System.out.println("도서 목록이 파일에 저장되었습니다.");
+
+    } catch (IOException e) {
+      System.out.println("파일 저장 중 오류 발생: " + e.getMessage());
+    }
+  }
 }

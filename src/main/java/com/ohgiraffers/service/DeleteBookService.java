@@ -16,7 +16,7 @@ public class DeleteBookService {
     }
 
     /**
-     * 5. 도서 제거
+     *  도서 제거
      */
     public void deleteBook(){
         System.out.print("\n*** 도서 제거 ***\n");

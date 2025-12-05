@@ -16,7 +16,7 @@ public class UpdateBookService {
     }
 
     /**
-     * 4. 도서 수성
+     *  도서 수정
      */
     public void updateBook() {
         System.out.println("\n도서 정보 수정\n");
