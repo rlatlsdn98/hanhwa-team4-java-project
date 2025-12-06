@@ -10,7 +10,7 @@ public class SelectAllService {
 
   // Run 에서 넘겨주는 bookList 그대로 받기
   public SelectAllService(List<BookDTO> bookList) {
-    this.bookList = bookList;
+      this.bookList = bookList;
   }
 
   // 1. 모든 도서 목록 조회
