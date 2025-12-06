@@ -1,5 +1,6 @@
 package com.ohgiraffers.service;
 
+import com.ohgiraffers.configuration.Config;
 import com.ohgiraffers.dto.BookDTO;
 
 import java.io.BufferedWriter;
@@ -68,7 +69,7 @@ public class DeleteBookService {
 
     try (BufferedWriter bw =
              new BufferedWriter(
-                 new FileWriter("src/members.txt"))) {
+                 new FileWriter(Config.OUTPUT_FILE_PATH.getFilePath()))) {
 
       for (BookDTO book : bookList) {
         // number title author price

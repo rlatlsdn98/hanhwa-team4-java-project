@@ -1,5 +1,6 @@
 package com.ohgiraffers.service;
 
+import com.ohgiraffers.configuration.Config;
 import com.ohgiraffers.dto.BookDTO;
 
 import java.io.*;
@@ -7,9 +8,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class AddBookService {
-
-  //  실제 파일 위치에 맞게 경로 상수로 관리
-  private static final String BOOK_FILE_PATH = "src/members.txt";
 
   private List<BookDTO> bookList;
   private Scanner sc;
@@ -81,20 +79,20 @@ public class AddBookService {
 
 
   /**
-   * 파일(members.txt)에서 가장 큰 번호(첫 번째 컬럼)를 읽어오는 메서드
+   * 파일(booklist.txt)에서 가장 큰 번호(첫 번째 컬럼)를 읽어오는 메서드
    * - 없으면 0 반환 → 첫 책은 1번부터 시작
    */
   private int getLastBookNumberFromFile() {
 
     int lastNumber = 0;
 
-    File file = new File(BOOK_FILE_PATH);
+    File file = new File(Config.OUTPUT_FILE_PATH.getFilePath());
     if (!file.exists()) {
       // 파일이 없으면 아직 아무도 없는 상태라고 가정
       return 0;
     }
 
-    try (BufferedReader br = new BufferedReader(new FileReader(BOOK_FILE_PATH))) {
+    try (BufferedReader br = new BufferedReader(new FileReader(Config.OUTPUT_FILE_PATH.getFilePath()))) {
 
       String line;
       while ((line = br.readLine()) != null) {
@@ -139,7 +137,7 @@ public class AddBookService {
     BookDTO book = bookList.get(bookList.size() - 1);
 
     try (BufferedWriter bw =
-             new BufferedWriter(new FileWriter(BOOK_FILE_PATH, true))) {
+             new BufferedWriter(new FileWriter(Config.INPUT_FILE_PATH.getFilePath(), true))) {
 
       // number title author price
       bw.write(book.getNumber() + " "

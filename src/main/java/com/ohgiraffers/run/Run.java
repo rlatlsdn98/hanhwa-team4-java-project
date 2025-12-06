@@ -1,5 +1,6 @@
 package com.ohgiraffers.run;
 
+import com.ohgiraffers.configuration.Config;
 import com.ohgiraffers.dto.BookDTO;
 import com.ohgiraffers.service.*;
 
@@ -96,7 +97,7 @@ public class Run {
         // 1. 파일 데이터를 읽어 오는 방법
         // 2. 읽어온 파일 데이터를 어떻게 tempList에 추가할지?
         try (BufferedReader br =
-                     new BufferedReader(new FileReader("src/members.txt"))) {
+                     new BufferedReader(new FileReader(Config.OUTPUT_FILE_PATH.getFilePath()))) {
 
             String line;
             while ((line = br.readLine()) != null) {
