@@ -15,6 +15,7 @@ public class SortBookListService {
 
     public SortBookListService(List<BookDTO> bookList, Scanner sc) {
         this.bookList = bookList;
+        this.sc = sc;
     }
 
 
