@@ -12,7 +12,7 @@ public class SelectAllService {
         this.bookList = bookList;
     }
 
-    // 1. 모든 도서 목럭 조회
+    // 1. 모든 도서 목록 조회
     public void selectAll() {
         for (BookDTO book : bookList) {
             System.out.println(book);
