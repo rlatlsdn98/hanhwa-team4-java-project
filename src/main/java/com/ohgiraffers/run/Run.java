@@ -26,7 +26,7 @@ public class Run {
     private DeleteBookService deleteBookService;                // 5. 도서 제거
     private SearchBookService searchBookService;                // 6. 도서 검색
     private SortBookListService sortBookListService;            // 7. 도서 정렬
-    private RecommendBookService recommendBookService;
+
 
     public Run() {
         this.sc = new Scanner(System.in);
@@ -40,7 +40,7 @@ public class Run {
         this.deleteBookService = new DeleteBookService(this.bookList, this.sc);
         this.searchBookService = new SearchBookService(this.bookList, this.sc);
         this.sortBookListService = new SortBookListService(this.bookList, this.sc);
-        this.recommendBookService = new RecommendBookService(this.bookList);
+
         this.run();
     }
 
@@ -57,7 +57,6 @@ public class Run {
             System.out.println("5. 도서 제거");
             System.out.println("6. 도서 검색");
             System.out.println("7. 도서 정렬");
-            System.out.println("8. 오늘의 추천 도서");
             System.out.println("0. 종료");
 
             try{
@@ -73,7 +72,6 @@ public class Run {
                     case 5: this.deleteBookService.deleteBook();       break;
                     case 6: this.searchBookService.searchBook();       break;
                     case 7: this.sortBookListService.sortBookList();     break;
-                    case 8: this.recommendBookService.recommendBook();     break;
                     case 0:
                         System.out.println("------------프로그램 종료-------------"); break;
                     default:
