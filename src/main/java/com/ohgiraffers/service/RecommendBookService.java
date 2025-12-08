@@ -1,5 +1,6 @@
 package com.ohgiraffers.service;
 
+import com.ohgiraffers.configuration.Config;
 import com.ohgiraffers.dto.BookDTO;
 
 import java.io.*;
@@ -9,7 +10,6 @@ import java.util.Random;
 
 public class RecommendBookService {
     private List<BookDTO> bookList;
-    private static final String TODAY_BOOK_FILE_PATH = "src/main/resources/todaybook.txt";
     private BookDTO todayBook;
     private LocalDate savedDate;
     private LocalDate now = LocalDate.now();
@@ -35,7 +35,7 @@ public class RecommendBookService {
      * 저장된 오늘의 책 불러오기 또는 생성
      */
     private void loadTodayBook(){
-        File file = new File(TODAY_BOOK_FILE_PATH);
+        File file = new File(Config.TODAY_BOOK_FILE_PATH.getFilePath());
 
         if (!file.exists() || file.length() == 0) {
             try {
@@ -89,7 +89,8 @@ public class RecommendBookService {
      * 파일에 저장
      */
     private void saveTodayBook(){
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(TODAY_BOOK_FILE_PATH))) {
+        try (BufferedWriter bw = new BufferedWriter(
+                new FileWriter(Config.TODAY_BOOK_FILE_PATH.getFilePath()))) {
 
             bw.write(now.toString());
             bw.newLine();
